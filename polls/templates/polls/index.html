@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}"/>
+    <title>ds_polls</title>
+</head>
+<body>
+<p><strong> 최근 투표 목록입니다. </strong></p>
+<br/>
+{%  if latest_poll_list %}
+<ul>
+    {% for poll in latest_poll_list %}
+    <!--li><a href="/polls/{{ poll.id }}/">{{ poll.question_txt }}</a></li-->
+        <li><a href="{% url 'ds_polls:detail' poll.id %}">{{ poll.question_txt }}</a></li>
+    {% endfor %}
+</ul>
+
+{% else %}
+<p> There is no poll.</p>
+{% endif %}
+</body>
+</html>
